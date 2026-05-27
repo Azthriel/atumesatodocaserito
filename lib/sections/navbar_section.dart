@@ -2,9 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_caserito/core/colors.dart';
 import 'package:todo_caserito/core/text_styles.dart';
+import 'contact_section.dart' show launchWhatsApp;
 
 class NavbarSection extends StatelessWidget implements PreferredSizeWidget {
-  const NavbarSection({super.key});
+  final VoidCallback? onInicio;
+  final VoidCallback? onNosotros;
+  final VoidCallback? onMenu;
+  final VoidCallback? onGaleria;
+
+  const NavbarSection({
+    super.key,
+    this.onInicio,
+    this.onNosotros,
+    this.onMenu,
+    this.onGaleria,
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
@@ -15,6 +27,7 @@ class NavbarSection extends StatelessWidget implements PreferredSizeWidget {
 
     return Container(
       height: 60,
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
       decoration: const BoxDecoration(
         color: AppColors.cream,
         border: Border(bottom: BorderSide(color: AppColors.border)),
@@ -43,13 +56,13 @@ class NavbarSection extends StatelessWidget implements PreferredSizeWidget {
           ),
           const Spacer(),
           if (!isMobile) ...[
-            _NavLink(label: 'Inicio'),
+            _NavLink(label: 'Inicio', onTap: onInicio),
             const SizedBox(width: 24),
-            _NavLink(label: 'Nosotros'),
+            _NavLink(label: 'Nosotros', onTap: onNosotros),
             const SizedBox(width: 24),
-            _NavLink(label: 'Menú'),
+            _NavLink(label: 'Menú', onTap: onMenu),
             const SizedBox(width: 24),
-            _NavLink(label: 'Galería'),
+            _NavLink(label: 'Galería', onTap: onGaleria),
             const SizedBox(width: 24),
           ],
           _WaButton(),
@@ -61,11 +74,18 @@ class NavbarSection extends StatelessWidget implements PreferredSizeWidget {
 
 class _NavLink extends StatelessWidget {
   final String label;
-  const _NavLink({required this.label});
+  final VoidCallback? onTap;
+  const _NavLink({required this.label, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Text(label.toUpperCase(), style: AppTextStyles.nav());
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Text(label.toUpperCase(), style: AppTextStyles.nav()),
+      ),
+    );
   }
 }
 
@@ -73,7 +93,7 @@ class _WaButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {}, // ver contact_section.dart para la lógica de URL
+      onTap: launchWhatsApp,
       borderRadius: BorderRadius.circular(30),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),

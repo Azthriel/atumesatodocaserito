@@ -213,11 +213,14 @@ class _MenuRow extends StatelessWidget {
         border: Border(bottom: BorderSide(color: AppColors.border)),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        // ✅ center: alinea verticalmente nombre y precios cuando hay
+        // distinta cantidad de líneas en cada lado.
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   item.name,
@@ -240,6 +243,7 @@ class _MenuRow extends StatelessWidget {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: item.prices.map((p) => _PriceRow(p: p)).toList(),
           ),
         ],
@@ -255,6 +259,9 @@ class _PriceRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
       children: [
         if (p.label.isNotEmpty)
           Text(

@@ -5,7 +5,8 @@ import 'package:todo_caserito/core/text_styles.dart';
 import 'contact_section.dart' show launchWhatsApp;
 
 class HeroSection extends StatelessWidget {
-  const HeroSection({super.key});
+  final VoidCallback? onMenuTap;
+  const HeroSection({super.key, this.onMenuTap});
 
   @override
   Widget build(BuildContext context) {
@@ -18,39 +19,50 @@ class HeroSection extends StatelessWidget {
         horizontal: isMobile ? 24 : 80,
         vertical: isMobile ? 48 : 80,
       ),
-      child: isMobile ? _MobileHero() : _DesktopHero(),
+      child: isMobile
+          ? _MobileHero(onMenuTap: onMenuTap)
+          : _DesktopHero(onMenuTap: onMenuTap),
     );
   }
 }
 
 class _DesktopHero extends StatelessWidget {
+  final VoidCallback? onMenuTap;
+  const _DesktopHero({this.onMenuTap});
+
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Expanded(child: _HeroText()),
+        Expanded(child: _HeroText(onMenuTap: onMenuTap)),
         const SizedBox(width: 40),
-        _MascotBox(size: 280),
+        const _MascotBox(size: 280),
       ],
     );
   }
 }
 
 class _MobileHero extends StatelessWidget {
+  final VoidCallback? onMenuTap;
+  const _MobileHero({this.onMenuTap});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _MascotBox(size: 200),
+        const _MascotBox(size: 200),
         const SizedBox(height: 32),
-        _HeroText(),
+        _HeroText(onMenuTap: onMenuTap),
       ],
     );
   }
 }
 
 class _HeroText extends StatelessWidget {
+  final VoidCallback? onMenuTap;
+  const _HeroText({this.onMenuTap});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -91,7 +103,11 @@ class _HeroText extends StatelessWidget {
               onTap: launchWhatsApp,
             ),
             const SizedBox(width: 12),
-            _CtaButton(label: 'Ver menú', filled: false, onTap: () {}),
+            _CtaButton(
+              label: 'Ver menú',
+              filled: false,
+              onTap: onMenuTap ?? () {},
+            ),
           ],
         ),
       ],
@@ -141,18 +157,10 @@ class _MascotBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: size,
       height: size,
-      decoration: BoxDecoration(
-        color: AppColors.creamDark,
-        shape: BoxShape.circle,
-      ),
-      // 📸 Reemplazá con:
-      // child: Image.asset('assets/images/personaje.png', fit: BoxFit.contain),
-      child: Center(
-        child: Image.asset('assets/images/personaje.jpg', fit: BoxFit.contain),
-      ),
+      child: Image.asset('assets/images/personaje.jpg', fit: BoxFit.contain),
     );
   }
 }

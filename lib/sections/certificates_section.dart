@@ -21,14 +21,14 @@ class CertificateModel {
 const _certs = [
   CertificateModel(
     title: 'Pastelería Profesional',
-    institution: 'Instituto Argentino de Gastronomía',
-    year: '2022',
+    institution: 'Centro de formación profesional "Malvinas Argentinas"',
+    year: '2025',
     assetPath: 'assets/images/certificates/cert1.jpg',
   ),
   CertificateModel(
-    title: 'Decoración de Tortas',
-    institution: 'INFP',
-    year: '2023',
+    title: 'Manipulación de alimentos',
+    institution: 'Centro de formación profesional "Malvinas Argentinas"',
+    year: '2025',
     assetPath: 'assets/images/certificates/cert2.jpg',
   ),
   // Agregá más acá...

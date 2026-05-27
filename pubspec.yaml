@@ -1,8 +1,6 @@
 name: todo_caserito
-description: "A new Flutter project."
+description: "Tortas artesanales a pedido en Hurlingham, Buenos Aires. Balcarce, Chajá, Cheesecake, Lemon Pie y más. Entrega a domicilio en el GBA Oeste. ¡Pedí por WhatsApp!"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
-
 version: 1.0.0+1
 
 environment:
@@ -19,12 +17,22 @@ dependencies:
       ref: v1.2.0
   firebase_core: ^4.9.0
   cloud_firestore: ^6.4.1
+  flutter_web_plugins:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_launcher_icons: "^0.14.4"
   flutter_lints: ^6.0.0
+
+flutter_launcher_icons:
+  image_path: "assets/images/og_image.jpg"
+  web:
+    generate: true
+    image_path: "assets/images/og_image.jpg"
+    background_color: "#FAF8F3"
+    theme_color: "#C8472B"
 
 # The following section is specific to Flutter packages.
 flutter:

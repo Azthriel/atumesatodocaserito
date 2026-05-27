@@ -85,7 +85,7 @@ class _AboutText extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('SOBRE NOSOTROS', style: AppTextStyles.label()),
+        Text('SOBRE MÍ', style: AppTextStyles.label()),
         const SizedBox(height: 12),
         RichText(
           text: TextSpan(
@@ -106,7 +106,7 @@ class _AboutText extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Text(
-          'Soy Romi, y hago tortas artesanales a pedido desde mi casa. '
+          'Soy Romi, una pastelera profesional, hago tortas artesanales a pedido desde mi casa. '
           'Cada postre está hecho con ingredientes seleccionados y muchísimo amor.',
           style: AppTextStyles.body(),
         ),

@@ -6,18 +6,13 @@ import 'package:todo_caserito/core/text_styles.dart';
 
 // URL global reutilizable desde otras secciones
 Future<void> launchWhatsApp() async {
+  final phone = '5491131707357';
+  final message = '¡Hola Romi! Vengo de la web y quiero hacer un pedido 🍰';
   final uri = Uri.parse(
-    'https://wa.me/5491131707357?text=Hola+Romi!+Quiero+hacer+un+pedido+%F0%9F%8D%B0',
+    'https://api.whatsapp.com/send?phone=$phone&text=${Uri.encodeComponent(message)}',
   );
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri, mode: LaunchMode.externalApplication);
-  }
-}
-
-Future<void> launchPhone() async {
-  final uri = Uri.parse('tel:+5491131707357');
-  if (await canLaunchUrl(uri)) {
-    await launchUrl(uri);
   }
 }
 
@@ -44,19 +39,25 @@ class ContactSection extends StatelessWidget {
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-              style: AppTextStyles.display(size: isMobile ? 36 : 48, color: AppColors.cream),
+              style: AppTextStyles.display(
+                size: isMobile ? 36 : 48,
+                color: AppColors.cream,
+              ),
               children: const [
                 TextSpan(text: '¿Querés hacer\nun '),
                 TextSpan(
                   text: 'pedido?',
-                  style: TextStyle(fontStyle: FontStyle.italic, color: AppColors.orange, fontWeight: FontWeight.w300),
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: AppColors.orange,
+                    fontWeight: FontWeight.w300,
+                  ),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 24),
           InkWell(
-            onTap: launchPhone,
             child: Text(
               '11 3170-7357',
               style: GoogleFonts.cormorantGaramond(

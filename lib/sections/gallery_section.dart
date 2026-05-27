@@ -1,4 +1,5 @@
 // lib/sections/gallery_section.dart
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:todo_caserito/core/colors.dart';
 import 'package:todo_caserito/core/text_styles.dart';
@@ -24,6 +25,8 @@ const _photos = [
   ),
   _Photo('assets/images/gallery/brownie.jpeg', 'Torta Brownie'),
   _Photo('assets/images/gallery/pastafrola.jpeg', 'Pastafrola'),
+  // _Photo('assets/images/gallery/budin.jpeg', 'Budin'),
+  // Agregá más acá — se muestran todas automáticamente
 ];
 
 class _Photo {
@@ -72,126 +75,117 @@ class GallerySection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 40),
-          isMobile ? _MobileGallery() : _DesktopGallery(),
+          isMobile ? const _MobileGallery() : const _DesktopGallery(),
         ],
       ),
     );
   }
 }
 
+// ── Desktop: grilla dinámica de 3 columnas ───────────────────────────────────
 class _DesktopGallery extends StatelessWidget {
+  const _DesktopGallery();
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 440,
-      child: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: _GalleryTile(
-              photo: _photos[0],
-              radius: const BorderRadius.only(
-                topLeft: Radius.circular(16),
-                bottomLeft: Radius.circular(16),
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Column(
-              children: [
-                Expanded(
+    final rows = <Widget>[];
+    const cols = 3;
+    const rowHeight = 260.0;
+
+    for (int i = 0; i < _photos.length; i += cols) {
+      final slice = _photos.sublist(i, min(i + cols, _photos.length));
+      rows.add(
+        SizedBox(
+          height: rowHeight,
+          child: Row(
+            children: List.generate(slice.length, (j) {
+              return Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(left: j > 0 ? 8 : 0),
                   child: _GalleryTile(
-                    photo: _photos[1],
-                    radius: const BorderRadius.only(
-                      topRight: Radius.circular(16),
-                    ),
+                    photo: slice[j],
+                    radius: _radiusFor(i, j, slice.length),
                   ),
                 ),
-                const SizedBox(height: 8),
-                Expanded(child: _GalleryTile(photo: _photos[2])),
-              ],
-            ),
+              );
+            }),
           ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Column(
-              children: [
-                Expanded(child: _GalleryTile(photo: _photos[3])),
-                const SizedBox(height: 8),
-                Expanded(
-                  child: _GalleryTile(
-                    photo: _photos[4],
-                    radius: const BorderRadius.only(
-                      bottomRight: Radius.circular(16),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      );
+      if (i + cols < _photos.length) rows.add(const SizedBox(height: 8));
+    }
+
+    return Column(children: rows);
+  }
+
+  /// Redondea solo las esquinas exteriores de la grilla completa.
+  BorderRadius _radiusFor(int rowStart, int col, int colsInRow) {
+    const r = Radius.circular(12);
+    final isFirstRow = rowStart == 0;
+    final isLastRow  = rowStart + colsInRow >= _photos.length;
+    final isFirstCol = col == 0;
+    final isLastCol  = col == colsInRow - 1;
+
+    return BorderRadius.only(
+      topLeft:     (isFirstRow && isFirstCol) ? r : Radius.zero,
+      topRight:    (isFirstRow && isLastCol)  ? r : Radius.zero,
+      bottomLeft:  (isLastRow  && isFirstCol) ? r : Radius.zero,
+      bottomRight: (isLastRow  && isLastCol)  ? r : Radius.zero,
     );
   }
 }
 
+// ── Mobile: columna de filas de 2 ────────────────────────────────────────────
 class _MobileGallery extends StatelessWidget {
+  const _MobileGallery();
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 220,
-          child: _GalleryTile(
-            photo: _photos[0],
-            radius: BorderRadius.circular(12),
-          ),
+    final widgets = <Widget>[];
+
+    // Primera foto grande
+    widgets.add(
+      SizedBox(
+        height: 220,
+        child: _GalleryTile(
+          photo: _photos[0],
+          radius: BorderRadius.circular(12),
         ),
-        const SizedBox(height: 8),
-        SizedBox(
-          height: 160,
-          child: Row(
-            children: [
-              Expanded(
-                child: _GalleryTile(
-                  photo: _photos[1],
-                  radius: BorderRadius.circular(12),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: _GalleryTile(
-                  photo: _photos[2],
-                  radius: BorderRadius.circular(12),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 8),
-        SizedBox(
-          height: 160,
-          child: Row(
-            children: [
-              Expanded(
-                child: _GalleryTile(
-                  photo: _photos[3],
-                  radius: BorderRadius.circular(12),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: _GalleryTile(
-                  photo: _photos[4],
-                  radius: BorderRadius.circular(12),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+      ),
     );
+
+    // El resto en pares de 2
+    for (int i = 1; i < _photos.length; i += 2) {
+      widgets.add(const SizedBox(height: 8));
+      final a = _photos[i];
+      final b = i + 1 < _photos.length ? _photos[i + 1] : null;
+      widgets.add(
+        SizedBox(
+          height: 160,
+          child: Row(
+            children: [
+              Expanded(
+                child: _GalleryTile(
+                  photo: a,
+                  radius: BorderRadius.circular(12),
+                ),
+              ),
+              if (b != null) ...[
+                const SizedBox(width: 8),
+                Expanded(
+                  child: _GalleryTile(
+                    photo: b,
+                    radius: BorderRadius.circular(12),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Column(children: widgets);
   }
 }
 
@@ -212,7 +206,6 @@ class _GalleryTile extends StatelessWidget {
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
-          // Si el archivo no existe todavía, muestra placeholder
           errorBuilder: (_, _, _) => Container(
             color: AppColors.creamDark,
             child: Column(
@@ -226,6 +219,7 @@ class _GalleryTile extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   photo.label,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 11,
                     color: AppColors.warmGray,
