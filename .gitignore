@@ -53,3 +53,4 @@ linux/
 test/
 .metadata
 pubspec.lock
+lib/firebase_options.dart

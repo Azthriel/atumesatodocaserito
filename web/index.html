@@ -1,46 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
-
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- iOS meta tags & icons -->
+  <!-- ── SEO primario ───────────────────────────────────────── -->
+  <title>Todo Caserito · Repostería Artesanal a Domicilio | Buenos Aires</title>
+  <meta name="description"
+    content="Tortas artesanales a pedido en Hurlingham, Buenos Aires. Balcarce, Chajá, Cheesecake, Lemon Pie y más. Entrega a domicilio en el GBA Oeste. ¡Pedí por WhatsApp!">
+  <meta name="keywords"
+    content="tortas artesanales hurlingham, repostería casera hurlingham, tortas a pedido gba oeste, cheesecake buenos aires, lemon pie hurlingham, delivery tortas hurlingham">
+  <meta name="author" content="Romi Trillo — Todo Caserito">
+  <link rel="canonical" href="https://www.atumesatodocaserito.com.ar/">
+
+  <!-- ── Open Graph (Facebook / WhatsApp preview) ──────────── -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.atumesatodocaserito.com.ar/">
+  <meta property="og:title" content="Todo Caserito · Repostería Artesanal">
+  <meta property="og:description" content="Tortas artesanales a pedido con entrega a domicilio en Buenos Aires.">
+  <meta property="og:image" content="https://www.atumesatodocaserito.com.ar/icons/Icon-512.png">
+  <meta property="og:locale" content="es_AR">
+
+  <!-- ── Twitter Card ──────────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Todo Caserito · Repostería Artesanal">
+  <meta name="twitter:description" content="Tortas artesanales a pedido con entrega a domicilio en Buenos Aires.">
+  <meta name="twitter:image" content="https://www.atumesatodocaserito.com.ar/icons/Icon-512.png">
+
+  <!-- ── JSON-LD (Google rich results) ─────────────────────── -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Todo Caserito",
+  "description": "Repostería artesanal a pedido con entrega a domicilio en Hurlingham y Gran Buenos Aires.",
+  "url": "https://www.atumesatodocaserito.com.ar/",
+  "telephone": "+5491131707357",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Hurlingham",
+    "addressRegion": "Buenos Aires",
+    "addressCountry": "AR"
+  },
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": -34.5897,
+      "longitude": -58.6344
+    },
+    "geoRadius": "15000"
+  },
+  "servesCuisine": "Repostería",
+  "priceRange": "$$"
+}
+  </script>
+
+  <!-- ── PWA / Icons ───────────────────────────────────────── -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="todo_caserito">
+  <meta name="apple-mobile-web-app-title" content="Todo Caserito">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>todo_caserito</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="manifest" href="manifest.json">
 </head>
-<body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
+<body>
   <script src="flutter_bootstrap.js" async></script>
 </body>
+
 </html>

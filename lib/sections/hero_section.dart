@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../core/colors.dart';
-import '../core/text_styles.dart';
+import 'package:todo_caserito/core/colors.dart';
+import 'package:todo_caserito/core/text_styles.dart';
 import 'contact_section.dart' show launchWhatsApp;
 
 class HeroSection extends StatelessWidget {

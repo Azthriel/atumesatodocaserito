@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quarks_footer/quarks_footer.dart';
-import '../core/colors.dart';
-import '../sections/navbar_section.dart';
-import '../sections/hero_section.dart';
-import '../sections/about_section.dart';
-import '../sections/menu_section.dart';
-import '../sections/gallery_section.dart';
-import '../sections/contact_section.dart';
+import 'package:todo_caserito/sections/certificates_section.dart';
+import 'package:todo_caserito/core/colors.dart';
+import 'package:todo_caserito/sections/navbar_section.dart';
+import 'package:todo_caserito/sections/hero_section.dart';
+import 'package:todo_caserito/sections/about_section.dart';
+import 'package:todo_caserito/sections/menu_section.dart';
+import 'package:todo_caserito/sections/gallery_section.dart';
+import 'package:todo_caserito/sections/contact_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,6 +26,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             const HeroSection(),
             const AboutSection(),
+            const CertificatesSection(),
             const MenuSection(),
             const GallerySection(),
             const ContactSection(),
