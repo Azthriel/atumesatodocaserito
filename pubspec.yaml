@@ -15,6 +15,10 @@ dependencies:
     git:
       url: https://github.com/Quarks-Studio/quarks_footer.git
       ref: v1.2.0
+  quarks_version_checker:
+    git:
+      url: https://github.com/quarks-studio/quarks_version_checker
+      ref: v1.1.0
   firebase_core: ^4.9.0
   cloud_firestore: ^6.4.1
   flutter_web_plugins:

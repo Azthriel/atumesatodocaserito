@@ -23,13 +23,19 @@ const _certs = [
     title: 'Pastelería Profesional',
     institution: 'Centro de formación profesional "Malvinas Argentinas"',
     year: '2025',
-    assetPath: 'assets/images/certificates/cert1.jpg',
+    assetPath: 'assets/images/certificates/cert1.png',
   ),
   CertificateModel(
     title: 'Manipulación de alimentos',
     institution: 'Centro de formación profesional "Malvinas Argentinas"',
     year: '2025',
-    assetPath: 'assets/images/certificates/cert2.jpg',
+    assetPath: 'assets/images/certificates/cert2.png',
+  ),
+  CertificateModel(
+    title: 'Cocina para comedores',
+    institution: 'Centro de formación profesional "Malvinas Argentinas"',
+    year: '2025',
+    assetPath: 'assets/images/certificates/cert3.png',
   ),
   // Agregá más acá...
 ];

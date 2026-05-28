@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.atumesatodocaserito.com.ar/sitemap.xml
