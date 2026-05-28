@@ -69,7 +69,7 @@ class _HeroText extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'REPOSTERÍA ARTESANAL · BUENOS AIRES',
+          'REPOSTERÍA ARTESANAL · HURLINGHAM · BUENOS AIRES',
           style: AppTextStyles.label(),
         ),
         const SizedBox(height: 12),
